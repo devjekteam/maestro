@@ -19,8 +19,9 @@ import Login from './views/pages/login';
 import Register from './views/pages/register';
 import ForgetPass from './views/pages/forget';
 import Page404 from './views/pages/404';
-import PageInvoice from './views/pages/invoice';
 import Onboarding, {ConsultationInformation, YourInformation} from './views/pages/onboarding';
+import Calendar from './views/pages/calendar';
+import Availabilities from './views/pages/availabilities';
 
 
 // import main style dependency file
@@ -126,16 +127,17 @@ class Index {
             <Router history={history}>
               <Route component={App} path='/' onEnter={this.requireAuth.bind(this)}>
                   <IndexRoute component={Dashboard}/>
+                  <Route path="calendar" component={Calendar}/>
+                  <Route path="availabilities" component={Availabilities}/>
+                  <Route path="onboarding" component={Onboarding} onEnter={this.startOnboarding.bind(this)}>
+                      <IndexRoute component={ConsultationInformation} />
+                      <Route path="1" component={ConsultationInformation} />
+                      <Route path="2" component={YourInformation} onEnter={this.checkForPaypalEmail.bind(this)}/>
+                  </Route>
               </Route>
               <Route component={Login} path='/login'/>
               <Route component={Register} path='/register'/>
               <Route component={ForgetPass} path='/forget'/>
-              <Route component={PageInvoice} path='/invoice'/>
-              <Route path="onboarding" component={Onboarding} onEnter={this.startOnboarding.bind(this)}>
-                  <IndexRoute component={ConsultationInformation} />
-                  <Route path="1" component={ConsultationInformation} />
-                  <Route path="2" component={YourInformation} onEnter={this.checkForPaypalEmail.bind(this)}/>
-              </Route>
               {/* default */}
               <Route component={Page404} path='404'/>
               <Redirect from="*" to="404"/>

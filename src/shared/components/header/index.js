@@ -71,10 +71,9 @@ export default (props) => (
                         <img src="http://i.imgur.com/0rVeh4A.jpg" alt="avatar"/>
                     </DropdownToggle>
                     <DropdownMenu right style={{minWidth: '12rem'}}>
-                        <DropdownItem header>Balance: $993.4</DropdownItem>
+                        <DropdownItem header></DropdownItem>
                         <DropdownItem divider/>
                         <DropdownItem><IconFace size="16"/>&emsp;<a href="#">Profile</a></DropdownItem>
-                        <DropdownItem><IconMail size="16"/>&emsp;<a href="#">Inbox</a></DropdownItem>
                         <DropdownItem><IconSecurity size="16"/>&emsp;<a href="#">Security</a></DropdownItem>
                         <DropdownItem><IconHelp size="16"/>&emsp;<a href="#">Help</a></DropdownItem>
                         <div className="text-right ml-3 mr-3 mt-2"><Button block color="success" size="sm"><IconLogout size="15"/>&emsp;Logout</Button></div>

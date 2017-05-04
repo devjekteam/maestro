@@ -25,13 +25,13 @@ import IconDot from 'react-icons/lib/md/fiber-manual-record';
 // Sales Chart
 // -----------
 const salesData = [
-      {name: 'Jun', iphone: 4000, imac: 2400},
-      {name: 'Jul', iphone: 3000, imac: 1398},
-      {name: 'Aug', iphone: 2000, imac: 2200},
-      {name: 'Sep', iphone: 2780, imac: 3008},
-      {name: 'Oct', iphone: 1890, imac: 2800},
-      {name: 'Nov', iphone: 2390, imac: 3200},
-      {name: 'Dec', iphone: 3490, imac: 3300},
+      {name: 'Jun', sales: 0},
+      {name: 'Jul', sales: 0},
+      {name: 'Aug', sales: 0},
+      {name: 'Sep', sales: 0},
+      {name: 'Oct', sales: 0},
+      {name: 'Nov', sales: 0},
+      {name: 'Dec', sales: 0},
 ];
 
 const SalesDataChart = () => (
@@ -42,8 +42,7 @@ const SalesDataChart = () => (
             <CartesianGrid stroke="#eee" vertical={false}/>
             <Tooltip wrapperStyle={{borderColor: '#eee'}}/>
             <Legend />
-            <Area type='monotone' dataKey='iphone' stackId="1" strokeWidth={2} stroke="#448AFF" fill='#448AFF' fillOpacity=".8" />
-            <Area type='monotone' dataKey='imac' stackId="1" strokeWidth={2} stroke="#69F0AE" fill='#69F0AE'  fillOpacity=".8"/>
+            <Area type='monotone' dataKey='sales' stackId="1" strokeWidth={2} stroke="#448AFF" fill='#448AFF' fillOpacity=".8" />
         </AreaChart>
     </ResponsiveContainer>
 );
@@ -197,15 +196,15 @@ const SalesCard = () => (
         <Card>
             <CardBlock>
                 <h6 className="text-uppercase title font-weight-bold small">Net Income</h6>
-                <h4 className="font-weight-normal mb-0"><IconDollar size="16" color="#00c853"/>23,500</h4>
+                <h4 className="font-weight-normal mb-0"><IconDollar size="16" color="#00c853"/>0</h4>
             </CardBlock>
             <CardBlock>
                 <h6 className="text-uppercase title font-weight-bold small text-nowrap">Forecast Income</h6>
-                <h4 className="font-weight-normal mb-0"><IconDollar size="16" color="#00c853"/>83,230</h4>
+                <h4 className="font-weight-normal mb-0"><IconDollar size="16" color="#00c853"/>0</h4>
             </CardBlock>
             <CardBlock>
                 <h6 className="text-uppercase title font-weight-bold small">Pageviews</h6>
-                <h4 className="font-weight-normal mb-0"><IconTrendUp size="16" color="#00c853"/>21,32,520</h4>
+                <h4 className="font-weight-normal mb-0"><IconTrendUp size="16" color="#00c853"/>0</h4>
             </CardBlock>
         </Card>
     </CardGroup>

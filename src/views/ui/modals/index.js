@@ -5,7 +5,7 @@ import {
     Modal, ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
-
+export {default as EmbedCodeModal} from './EmbedCodeModal.js'; 
 
 const ViewHeader = () => (
     <div className="view-header">
