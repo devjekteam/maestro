@@ -1,5 +1,4 @@
 import React from 'react';
-import screenfull from 'screenfull';
 import {
     UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem,
     Button, Progress
@@ -7,8 +6,6 @@ import {
 
 // icons
 import IconNotification from 'react-icons/lib/md/notifications-none';
-import IconFullScreen from 'react-icons/lib/md/crop-free';
-import IconSearch from 'react-icons/lib/md/search';
 import IconFace from 'react-icons/lib/md/face';
 import IconMail from 'react-icons/lib/md/mail';
 import IconSecurity from 'react-icons/lib/md/security';
@@ -27,14 +24,7 @@ export default (props) => (
         <div className="wrap mr-4">
             <IconMenu size="24" color="#fff" onClick={props.toggleNav} style={{cursor: 'pointer'}}/>
         </div>
-        <form className="col-7 col-sm-8 col-md-7 p-0 site-search">
-            <IconSearch color="#515151" size="22"/>
-            <input type="text" placeholder="Type your search ..." className="form-control"/>
-        </form>
         <div className="right-elems ml-auto d-flex">
-            <div className="wrap hidden-sm-down">
-                <IconFullScreen size="22" color="#fff" onClick={() => screenfull.toggle()}/>
-            </div>
             <div className="wrap notify hidden-sm-down">
 
                 <UncontrolledDropdown>

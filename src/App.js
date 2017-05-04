@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
+
 import Nav from './shared/components/nav';
 import SiteHead from './shared/components/header';
 
-import './app.scss';
+import './styles/app.scss';
 
-export default class App extends React.Component {
+
+class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {navMini: false}
+        this.state = {navMini: false};
     }
 
     toggleNav = (e) => {
@@ -34,3 +36,6 @@ export default class App extends React.Component {
         )
     }
 }
+
+
+export default App;

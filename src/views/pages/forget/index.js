@@ -32,7 +32,7 @@ export default () => (
                             <Link className="btn btn-primary" to="/">Reset Password</Link>{" "}
                         </FormGroup>
                     </Form>
-                    <p>Already have an account? <Link to="/pages/signin">Sign In</Link></p>
+                    <p>Already have an account? <Link to="/login">Sign In</Link></p>
                 </CardBlock>
             </Card>
 
