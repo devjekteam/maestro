@@ -79,7 +79,7 @@ class Index {
         }
     }
 
-    requireAuth(nextState, replace) {
+    requireAuth = (nextState, replace) => {
         if (!this.isLoggedIn) {
             replace({
                 pathname: '/login',
@@ -93,7 +93,7 @@ class Index {
         }
     }
 
-    startOnboarding(nextState, replace) {
+    startOnboarding = (nextState, replace) => {
         if (!this.isLoggedIn) {
             replace({
                 pathname: '/login',
@@ -102,7 +102,7 @@ class Index {
         }
     }
 
-    checkForAuthCode(nextState, replace) {
+    checkForAuthCode = (nextState, replace) => {
         // if user is logged in don't show them login page
         if(this.isLoggedIn) {
             replace({
@@ -125,21 +125,21 @@ class Index {
         <Provider store={store}>
           <div>
             <Router history={history}>
-              <Route component={App} path='/' onEnter={this.requireAuth.bind(this)}>
+              <Route component={App} path='/' onEnter={this.requireAuth}>
                   <IndexRoute component={Dashboard}/>
                   <Route path="calendar" component={Calendar}/>
                   <Route path="availabilities" component={Availabilities}/>
-                  <Route path="onboarding" component={Onboarding} onEnter={this.startOnboarding.bind(this)}>
+                  <Route path="onboarding" component={Onboarding} onEnter={this.startOnboarding}>
                       <IndexRoute component={ConsultationInformation} />
                       <Route path="1" component={ConsultationInformation} />
-                      <Route path="2" component={YourInformation} onEnter={this.checkForPaypalEmail.bind(this)}/>
+                      <Route path="2" component={YourInformation} onEnter={this.checkForPaypalEmail}/>
                   </Route>
               </Route>
-              <Route component={Login} path='/login'/>
-              <Route component={Register} path='/register'/>
-              <Route component={ForgetPass} path='/forget'/>
+              <Route component={Login} path="/login" onEnter={this.checkForAuthCode}/>
+              <Route component={Register} path="/register"/>
+              <Route component={ForgetPass} path="/forget"/>
               {/* default */}
-              <Route component={Page404} path='404'/>
+              <Route component={Page404} path="404"/>
               <Redirect from="*" to="404"/>
             </Router>/>
             <DevTools />
