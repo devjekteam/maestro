@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
     Card, CardBlock
 } from 'reactstrap';
-import {Table, Th, Thead, Tr, Td} from 'reactable';
+import {Table, Th, Thead} from 'reactable';
 
 import * as commoditiesActions from '../../../reducers/commodities/actions';
 
@@ -12,24 +12,6 @@ import * as commoditiesActions from '../../../reducers/commodities/actions';
 class CommoditiesPage extends Component {
   componentWillMount() {
     this.props.loadCommodities();
-  }
-
-  componentDidMount() {
-    // Slightly hacky
-    var table = document.getElementById("commodities-table");
-    var rows = table.getElementsByTagName("tr");
-    for (var i = 0; i < table.rows.length; i++) {
-        var currentRow = table.rows[i];
-        var createClickHandler =
-            function(row)
-            {
-              return function() {
-                  console.log("click");
-               };
-            };
-
-        currentRow.onclick = createClickHandler(currentRow);
-    }
   }
 
   render() {
