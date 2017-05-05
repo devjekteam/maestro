@@ -16,6 +16,12 @@ export default function commodities(state = initialState, action = {}) {
                 hasLoaded: true,
                 commodityList: action.payload.commodities
             });
+        case types.COMMODITY_DETAILS_LOADED:
+            console.log("here");
+            return Object.assign({}, state, {
+                hasLoaded: true,
+                commodity: action.payload
+            });
         default:
             return state;
     }
