@@ -1,53 +1,22 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {
-    Card, CardBlock, Button, Form, FormGroup, Label, Input, Col, InputGroup, InputGroupAddon
-} from 'reactstrap';
 import {browserHistory} from 'react-router';
+import {
+    Card, CardBlock
+} from 'reactstrap';
 
-import MetaDataInputs from '../../ui/MetaDataInputs'
+import CommodityForm from '../../ui/CommodityForm';
 
 import '../../../styles/EditCommodity.scss';
 import * as commoditiesActions from '../../../reducers/commodities/actions';
 
-
-const AttributeInput = (props) => {
-
-  function updateAttribute() {
-    const input = document.getElementById(props.attributeId);
-    const changes = {
-      [props.attributeName]: input.value
-    }
-    props.dispatch(commoditiesActions.updateCommodityDetails(changes));
-  }
-
-  return (
-    <Col sm={9}><Input type="text" name={props.attributeName} id={props.attributeId} defaultValue={props.defaultValue} onBlur={updateAttribute}/></Col>
-  )
-}
-
-const PriceInput = (props) => {
-
-  function updatePrice() {
-    const input = document.getElementById(props.attributeId);
-    const changes = {
-      [props.attributeName]: input.value
-    }
-    props.dispatch(commoditiesActions.updateCommodityDetails(changes));
-  }
-
-  return (
-    <Col sm={2}>
-      <InputGroup>
-        <InputGroupAddon>$</InputGroupAddon>
-        <Input type="number" name={props.attributeName} id={props.attributeId} defaultValue={props.defaultValue} onBlur={updatePrice}/>
-      </InputGroup>
-    </Col>
-  )
-}
-
-
 class EditCommodity extends Component {
+  constructor(props) {
+    super(props);
+
+    this.submitEditForm = this.submitEditForm.bind(this);
+  }
+
   componentWillMount() {
     this.props.dispatch(commoditiesActions.loadCommodity(this.props.params.id));
   }
@@ -73,28 +42,7 @@ class EditCommodity extends Component {
       <div className="view">
         <Card className="mb-8">
             <CardBlock>
-                <Form onSubmit={e => this.submitEditForm(e)}>
-                  <div className="edit-commodity-form-block">
-                    <h4>Attributes</h4>
-                    <FormGroup row>
-                      <Label for="commodityName" sm={2}>Name:</Label>
-                      <AttributeInput dispatch={this.props.dispatch} attributeName="name" attributeId="commodityName" defaultValue={commodity.name} />
-                    </FormGroup>
-                    <FormGroup row>
-                      <Label for="commodityDescription" sm={2}>Description:</Label>
-                      <AttributeInput dispatch={this.props.dispatch} attributeName="description" attributeId="commodityDescription" defaultValue={commodity.description} />
-                    </FormGroup>
-                    <FormGroup row>
-                      <Label for="commodityPrice" sm={2}>Price:</Label>
-                      <PriceInput dispatch={this.props.dispatch} attributeName="price" attributeId="commodityPrice" defaultValue={commodity.price} />
-                    </FormGroup>
-                  </div>
-                  <div className="edit-commodity-form-block">
-                    <h4>Custom Data</h4>
-                    <MetaDataInputs metadata={commodity.metadata ? commodity.metadata : []} />
-                  </div>
-                  <Button>Submit</Button>
-                </Form>
+                <CommodityForm dispatch={this.props.dispatch} commodity={commodity} submitForm={this.submitEditForm}/>
             </CardBlock>
         </Card>
       </div>
