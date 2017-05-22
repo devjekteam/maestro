@@ -64,10 +64,22 @@ export function loadCommodity(commodityId) {
           const errMsg = error.message === 'Failed to fetch' ? 'Ugh oh! We couldn\'t load your information. ' +
           'Please try again!' : error.message;
           dispatch(doneLoading());
-          dispatch(commodityLoaded());
           dispatch(sendErrorNotification(errMsg));
       });
   };
+}
+
+export function updateCommodityDetails(changes) {
+    return {
+      type: types.UPDATE_COMMODITY_DETAILS,
+      payload: changes
+    }
+}
+
+export function newMetaData() {
+  return {
+    type: types.NEW_METADATA
+  }
 }
 
 function commoditiesLoaded(commodities) {
