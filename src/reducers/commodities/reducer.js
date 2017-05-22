@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 
 const initialState = {
+    formSubmitted: false,
     hasLoaded: false,
     id: null,
     commodityList: null,
@@ -15,18 +16,17 @@ export default function commodities(state = initialState, action = {}) {
 
         case types.LOAD_COMMODITIES:
           return Object.assign({}, state, {
-            hasLoaded: false
+            hasLoaded: false,
+            formSubmitted: false
           });
 
         case types.COMMODITIES_DETAILS_LOADED:
-          console.log("COMMODITIES_DETAILS_LOADED");
           return Object.assign({}, state, {
             hasLoaded: true,
             commodityList: action.payload.commodities
           });
 
         case types.COMMODITY_DETAILS_LOADED:
-          console.log("COMMODITY_DETAILS_LOADED");
           return Object.assign({}, state, {
             hasLoaded: true,
             id: action.payload.id,
@@ -37,7 +37,6 @@ export default function commodities(state = initialState, action = {}) {
           });
 
         case types.UPDATE_COMMODITY_DETAILS:
-          console.log("UPDATE_COMMODITY_DETAILS");
           let newMetaData;
 
           if (action.payload.metadata) {
@@ -56,13 +55,23 @@ export default function commodities(state = initialState, action = {}) {
           });
 
         case types.NEW_METADATA:
-          console.log("NEW_METADATA");
           const metadataCopy = state.metadata;
           // signify new metadata
           metadataCopy.push({});
           // push empty object to signify new metadata
           return Object.assign({}, state, {
             metadata: metadataCopy
+          });
+
+        case types.SUBMIT_FORM:
+          return Object.assign({}, state, {
+            formSubmitted: false
+          });
+
+        case types.SUBMIT_FORM_SUCCESS:
+          // reset to initial state
+          return Object.assign({}, initialState, {
+            formSubmitted: true
           });
 
         default:

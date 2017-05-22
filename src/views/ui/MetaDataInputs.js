@@ -25,8 +25,8 @@ const MetaDataInput = (props) => {
 
   return (
     <FormGroup row id={props.metadataKey}>
-      <Col sm={2}><Input type="text" name="metadataKey" defaultValue={props.metadataKey === NEW_METADATA_ID ? "" : props.metadataKey} onChange={updateMetadata}/></Col>
-      <Col sm={2}><Input type="text" name="metadataValue" defaultValue={props.metadataValue} onChange={updateMetadata}/></Col>
+      <Col sm={2}><Input type="text" name="metadataKey" defaultValue={props.metadataKey === NEW_METADATA_ID ? "" : props.metadataKey} onBlur={updateMetadata}/></Col>
+      <Col sm={2}><Input type="text" name="metadataValue" defaultValue={props.metadataValue} onBlur={updateMetadata}/></Col>
     </FormGroup>
   )
 }
@@ -47,7 +47,6 @@ class MetaDataInputs extends Component {
     const metadataInputs = [];
 
     for (var i=0; i<metadata.length; i++) {
-
       // FIXME barf
       const key = Object.keys(metadata[i])[0];
 

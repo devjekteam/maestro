@@ -6,3 +6,5 @@ export const NEW_METADATA = 'commodity.NEW_METADATA';
 export const COMMODITIES_SAVED = 'commodity.COMMODITIES_SAVED';
 export const LOAD_COMMODITIES = 'commodity.LOAD_COMMODITIES';
 export const LOAD_COMMODITY = 'commodity.LOAD_COMMODITY';
+export const SUBMIT_FORM = 'commodity.SUBMIT_FORM';
+export const SUBMIT_FORM_SUCCESS = 'commodity.SUBMIT_FORM_SUCCESS';
