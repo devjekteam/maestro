@@ -13,7 +13,6 @@ import * as commoditiesActions from '../../../reducers/commodities/actions';
 class EditCommodity extends Component {
   constructor(props) {
     super(props);
-    console.log("shouldn't be here");
     this.submitEditForm = this.submitEditForm.bind(this);
   }
 

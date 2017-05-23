@@ -49,7 +49,6 @@ const TypeInput = (props) => {
     const changes = {
       [props.attributeName]: input.value
     }
-    console.log(changes);
     props.dispatch(commoditiesActions.updateCommodityDetails(changes));
   }
 
@@ -70,8 +69,6 @@ const TypeInput = (props) => {
 }
 
 const CommodityForm = (props) => {
-  console.log(props.commodity);
-
   return (
     <Form onSubmit={e => props.submitForm(e)}>
       <div className="edit-commodity-form-block">
