@@ -60,7 +60,7 @@ class CommoditiesTable extends Component {
     }
 
     return (
-      <Card className="mb-4">
+      <Card className="mb-4 commodities-wrapper">
         <CardBlock>
           <div className="commodity-table-header">
             <h6 className="mb-4 text-uppercase">Your Commodities</h6>
