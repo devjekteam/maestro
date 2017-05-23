@@ -64,10 +64,64 @@ export function loadCommodity(commodityId) {
           const errMsg = error.message === 'Failed to fetch' ? 'Ugh oh! We couldn\'t load your information. ' +
           'Please try again!' : error.message;
           dispatch(doneLoading());
-          dispatch(commodityLoaded());
           dispatch(sendErrorNotification(errMsg));
       });
   };
+}
+
+export function updateCommodityDetails(changes) {
+    return {
+      type: types.UPDATE_COMMODITY_DETAILS,
+      payload: changes
+    }
+}
+
+export function newMetaData() {
+  return {
+    type: types.NEW_METADATA
+  }
+}
+
+export function submitCommodityForm(basicInfo) {
+  return (dispatch, getState) => {
+    const { jwt }  = getState().appState;
+
+    dispatch(startSubmitting());
+
+    // get the redux state for the commodity
+    const fields = getState().commodities;
+
+    const payload = {
+      "name": fields.name,
+      "description": fields.description,
+      "price": fields.price,
+      "commodity_metadata": fields.metadata
+    }
+
+    fetch(`${API_ENDPOINT}/commodities/${fields.id}` , {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': jwt
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+      if (response.error) throw Error(response.error);
+      dispatch(doneSubmitting());
+    })
+    .catch( error => {
+      console.log(error);
+      const errMsg = error.message === 'Failed to fetch' ? 'Ugh oh! We couldn\'t load your information. ' +
+      'Please try again!' : error.message;
+      dispatch(sendErrorNotification(errMsg));
+    });
+  }
 }
 
 function commoditiesLoaded(commodities) {
@@ -88,4 +142,16 @@ function loadingCommodities() {
     return {
         type: types.LOAD_COMMODITIES
     }
+}
+
+function startSubmitting() {
+  return {
+    type: types.SUBMIT_FORM
+  }
+}
+
+function doneSubmitting() {
+  return {
+    type: types.SUBMIT_FORM_SUCCESS
+  }
 }

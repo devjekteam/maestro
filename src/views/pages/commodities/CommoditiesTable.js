@@ -18,7 +18,7 @@ class CommoditiesTable extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.commodities || !this.props.commodities.hasLoaded) return false;
+    if (!this.props.commodities || !this.props.commodities.hasLoaded || !this.props.commodities.commodityList) return false;
 
     // sorta hacky. better way to do this?
     var table = document.getElementById("commodities-table");
@@ -38,7 +38,7 @@ class CommoditiesTable extends Component {
   }
 
   render() {
-    if (!this.props.commodities || !this.props.commodities.hasLoaded) return false;
+    if (!this.props.commodities || !this.props.commodities.hasLoaded || !this.props.commodities.commodityList) return false;
 
     const tableRows = [];
     const commodityList = this.props.commodities.commodityList;

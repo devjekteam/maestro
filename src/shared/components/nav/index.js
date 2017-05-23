@@ -64,39 +64,39 @@ class NavList extends React.Component {
                         <span className="name">Dashboard</span>
                     </IndexLink>
                 </li>
-                <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 1) ? 'selected': ''}>
+                <li onClick={this.handleClick.bind(this, 1)} className={(this.state.selected === 1) ? 'selected': ''}>
                     <Link to="/commodities" activeClassName="active">
                         <IconCommodities size="18" color="#2962FF" className="icon-commodities"/>
                         <span className="name">Commodities</span>
                     </Link>
                 </li>
                 <li><div className="nav-list-title">Site</div></li>
-                  <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 2) ? 'selected': ''}>
+                  <li onClick={this.handleClick.bind(this, 2)} className={(this.state.selected === 2) ? 'selected': ''}>
                       <Link to="/templates" activeClassName="active">
                           <IconTemplates size="18" color="#2962FF" className="icon-templates"/>
                           <span className="name">Templates</span>
                       </Link>
                   </li>
-                  <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 3) ? 'selected': ''}>
+                  <li onClick={this.handleClick.bind(this, 3)} className={(this.state.selected === 3) ? 'selected': ''}>
                       <Link to="/calendar" activeClassName="active">
                           <IconCalendar size="18" color="#2962FF" className="icon-calendar"/>
                           <span className="name">Calendar</span>
                       </Link>
                   </li>
-                  <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 4) ? 'selected': ''}>
+                  <li onClick={this.handleClick.bind(this, 4)} className={(this.state.selected === 4) ? 'selected': ''}>
                       <Link to="/availabilities" activeClassName="active">
                           <IconAvailabilities size="18" color="#2962FF" className="icon-availabilities"/>
                           <span className="name">Availabilities</span>
                       </Link>
                   </li>
                 <li><div className="nav-list-title">Account</div></li>
-                  <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 5) ? 'selected': ''}>
+                  <li onClick={this.handleClick.bind(this, 5)} className={(this.state.selected === 5) ? 'selected': ''}>
                       <Link to="/billing" activeClassName="active">
                           <IconBilling size="18" color="#2962FF" className="icon-billingr"/>
                           <span className="name">Billing</span>
                       </Link>
                   </li>
-                  <li onClick={this.handleClick.bind(this, 0)} className={(this.state.selected === 6) ? 'selected': ''}>
+                  <li onClick={this.handleClick.bind(this, 6)} className={(this.state.selected === 6) ? 'selected': ''}>
                       <Link to="/settings" activeClassName="active">
                           <IconSettings size="18" color="#2962FF" className="icon-settings"/>
                           <span className="name">Settings</span>
