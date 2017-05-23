@@ -22,7 +22,7 @@ import Page404 from './views/pages/404';
 import Onboarding, {ConsultationInformation, YourInformation} from './views/pages/onboarding';
 import Calendar from './views/pages/calendar';
 import Availabilities from './views/pages/availabilities';
-import Commodities, {CommoditiesTable, EditCommodity} from './views/pages/commodities';
+import Commodities, {CommoditiesTable, EditCommodity, NewCommodity} from './views/pages/commodities';
 
 
 // import main style dependency file
@@ -132,6 +132,7 @@ class Index {
                   <Route path="availabilities" component={Availabilities}/>
                   <Route path="commodities" component={Commodities}>
                     <IndexRoute component={CommoditiesTable} />
+                    <Route path="new" component={NewCommodity} />
                     <Route path=":id" component={EditCommodity} />
                   </Route>
                   <Route path="onboarding" component={Onboarding} onEnter={this.startOnboarding}>

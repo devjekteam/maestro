@@ -18,7 +18,7 @@ class CommoditiesTable extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.props.commodities || !this.props.commodities.hasLoaded || !this.props.commodities.commodityList) return false;
+    if (!this.props.commodities || !this.props.commodities.commodityHasLoaded || !this.props.commodities.commodityList) return false;
 
     // sorta hacky. better way to do this?
     var table = document.getElementById("commodities-table");
@@ -37,8 +37,12 @@ class CommoditiesTable extends Component {
     browserHistory.push('/commodities/' + commodityId);
   }
 
+  newCommodity() {
+    browserHistory.push('/commodities/new');
+  }
+
   render() {
-    if (!this.props.commodities || !this.props.commodities.hasLoaded || !this.props.commodities.commodityList) return false;
+    if (!this.props.commodities || !this.props.commodities.commodityHasLoaded || !this.props.commodities.commodityList) return false;
 
     const tableRows = [];
     const commodityList = this.props.commodities.commodityList;
@@ -57,8 +61,13 @@ class CommoditiesTable extends Component {
 
     return (
       <Card className="mb-4">
-        <CardBlock className="table-responsive">
+        <CardBlock>
+          <div className="commodity-table-header">
             <h6 className="mb-4 text-uppercase">Your Commodities</h6>
+            <div className="btn new-commodity" onClick={this.newCommodity}>New Commodity</div>
+          </div>
+        </CardBlock>
+        <CardBlock className="table-responsive">
             <Table id="commodities-table"
               className="table"
               data={tableRows}

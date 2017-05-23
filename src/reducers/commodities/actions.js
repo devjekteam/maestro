@@ -84,7 +84,7 @@ export function newMetaData() {
 
 export function submitCommodityForm(basicInfo) {
   return (dispatch, getState) => {
-    const { jwt }  = getState().appState;
+    const { jwt, loggedInUser }  = getState().appState;
 
     dispatch(startSubmitting());
 
@@ -95,11 +95,26 @@ export function submitCommodityForm(basicInfo) {
       "name": fields.name,
       "description": fields.description,
       "price": fields.price,
-      "commodity_metadata": fields.metadata
+      "commodity_metadata": fields.metadata,
+      "commodity_type_id": fields.typeId,
+      "organization_id": loggedInUser.organization.id
     }
 
-    fetch(`${API_ENDPOINT}/commodities/${fields.id}` , {
-        method: 'PUT',
+    let url;
+    let methodType;
+
+    // edit if id exists
+    if (fields.id) {
+      url = `${API_ENDPOINT}/commodities/${fields.id}`;
+      methodType = 'PUT';
+    } else {
+      // new commodity
+      url = `${API_ENDPOINT}/commodities`;
+      methodType = 'POST'
+    }
+
+    fetch(url , {
+        method: methodType,
         mode: 'cors',
         headers: {
             'Accept': 'application/json',
@@ -117,10 +132,48 @@ export function submitCommodityForm(basicInfo) {
     })
     .catch( error => {
       console.log(error);
-      const errMsg = error.message === 'Failed to fetch' ? 'Ugh oh! We couldn\'t load your information. ' +
+      const errMsg = error.message === 'Failed to submit' ? 'Ugh oh! We couldn\'t submit your commodity. ' +
       'Please try again!' : error.message;
       dispatch(sendErrorNotification(errMsg));
     });
+  }
+}
+
+export function getCommodityTypes() {
+  return (dispatch, getState) => {
+      const { jwt }  = getState().appState;
+
+      dispatch(startLoading());
+      dispatch(loadingCommodityTypes());
+
+      fetch(`${API_ENDPOINT}/commodity-types` , {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': jwt
+          }
+      })
+      .then(response => {
+          return response.json();
+      }).then(types => {
+          if (types.error) throw Error(types.error);
+          dispatch(commodityTypesLoaded(types));
+          dispatch(doneLoading());
+      }).catch(error => {
+          console.log(error);
+          const errMsg = error.message === 'Failed to fetch' ? 'Ugh oh! We couldn\'t load your information. ' +
+          'Please try again!' : error.message;
+          dispatch(doneLoading());
+          dispatch(sendErrorNotification(errMsg));
+      });
+  };
+}
+
+export function resetStore() {
+  return {
+      type: types.RESET_STORE,
   }
 }
 
@@ -142,6 +195,19 @@ function loadingCommodities() {
     return {
         type: types.LOAD_COMMODITIES
     }
+}
+
+function loadingCommodityTypes() {
+  return {
+      type: types.LOAD_COMMODITY_TYPES
+  }
+}
+
+function commodityTypesLoaded(commodityTypes) {
+  return {
+    type: types.COMMODITY_TYPES_LOADED,
+    payload: commodityTypes
+  }
 }
 
 function startSubmitting() {
