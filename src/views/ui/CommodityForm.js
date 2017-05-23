@@ -42,8 +42,33 @@ const PriceInput = (props) => {
   )
 }
 
-const CommodityForm = (props) => {
+const TypeInput = (props) => {
 
+  function updateType() {
+    const input = document.getElementById(props.attributeId);
+    const changes = {
+      [props.attributeName]: input.value
+    }
+    props.dispatch(commoditiesActions.updateCommodityDetails(changes));
+  }
+
+  const options = [];
+  for (var i=0; i<props.types.length; i++) {
+    options.push(
+      <option key={'option-' + i} value={props.types[i].id}>{props.types[i].name}</option>
+    )
+  }
+
+  return (
+    <Col sm={2}>
+      <Input type="select" name={props.attributeName} id={props.attributeId} defaultValue={props.defaultValue} onBlur={updateType}>
+        {options}
+      </Input>
+    </Col>
+  )
+}
+
+const CommodityForm = (props) => {
   return (
     <Form onSubmit={e => props.submitForm(e)}>
       <div className="edit-commodity-form-block">
@@ -59,6 +84,10 @@ const CommodityForm = (props) => {
         <FormGroup row>
           <Label for="commodityPrice" sm={2}>Price:</Label>
           <PriceInput dispatch={props.dispatch} attributeName="price" attributeId="commodityPrice" defaultValue={props.commodity.price} />
+        </FormGroup>
+        <FormGroup row>
+          <Label for="commodityType" sm={2}>Type:</Label>
+          <TypeInput dispatch={props.dispatch} attributeName="typeId" attributeId="commodityType" types={props.commodity.commodityTypes} defaultValue={props.commodity.typeId} />
         </FormGroup>
       </div>
       <div className="edit-commodity-form-block">
