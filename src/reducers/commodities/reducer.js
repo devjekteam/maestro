@@ -59,7 +59,7 @@ export default function commodities(state = initialState, action = {}) {
             description: action.payload.description ? action.payload.description : state.description,
             price: action.payload.price ? action.payload.price : state.price,
             metadata: newMetaData ? newMetaData : state.metadata,
-            typeId: action.payload.typeId ? action.payload.typeId : state.typeId 
+            typeId: action.payload.typeId ? action.payload.typeId : state.typeId
           });
 
         case types.NEW_METADATA:
@@ -93,6 +93,14 @@ export default function commodities(state = initialState, action = {}) {
           return Object.assign({}, state, {
             typeHasLoaded: true,
             commodityTypes: action.payload.commodity_types
+          })
+
+        case types.REMOVE_METADATA:
+          let curMetadata = state.metadata;
+          curMetadata.splice(action.payload.position, 1);
+
+          return Object.assign({}, state, {
+            metadata: curMetadata,
           })
 
         default:
