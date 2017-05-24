@@ -5,6 +5,7 @@ import {
 } from 'reactstrap';
 
 import _ from "lodash";
+import '../../styles/ui/MetaDataInputs.scss';
 import * as commoditiesActions from '../../reducers/commodities/actions';
 
 const NEW_METADATA_ID = "__new_metadata__";
@@ -23,11 +24,22 @@ const MetaDataInput = (props) => {
     props.dispatch(commoditiesActions.updateCommodityDetails(changes));
   }
 
+  function removeMetadata() {
+    props.dispatch(commoditiesActions.removeMetadata(props.position));
+  }
+
+  let removeIcon = [];
+
+  if (!props.required) {
+    removeIcon.push(<div className="remove-icon" onClick={removeMetadata}><span>-</span></div>)
+  }
+
   return (
     <FormGroup row id={props.metadataKey}>
       <Col sm={2}><Input type="text" name="metadataKey" defaultValue={props.metadataKey === NEW_METADATA_ID ? "" : props.metadataKey} onBlur={updateMetadata}/></Col>
       <Col sm={2}><Input type="text" name="metadataValue" defaultValue={props.metadataValue} onBlur={updateMetadata}/></Col>
-    </FormGroup>
+      {removeIcon}
+  </FormGroup>
   )
 }
 

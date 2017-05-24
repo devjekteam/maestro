@@ -177,6 +177,13 @@ export function resetStore() {
   }
 }
 
+export function removeMetadata(position) {
+  return {
+      type: types.REMOVE_METADATA,
+      payload: {position: position}
+  }
+}
+
 function commoditiesLoaded(commodities) {
     return {
         type: types.COMMODITIES_DETAILS_LOADED,

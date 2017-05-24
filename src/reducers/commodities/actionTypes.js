@@ -11,3 +11,4 @@ export const SUBMIT_FORM_SUCCESS = 'commodity.SUBMIT_FORM_SUCCESS';
 export const RESET_STORE = 'commodity.RESET_STORE';
 export const COMMODITY_TYPES_LOADED = 'commodity.COMMODITY_TYPES_LOADED';
 export const LOAD_COMMODITY_TYPES = 'commodity.LOAD_COMMODITY_TYPES';
+export const REMOVE_METADATA = 'commodity.REMOVE_METADATA';
